@@ -1,0 +1,424 @@
+<?php
+// $Id: index.Original,v 1.1 2006/03/18 20:44:26 mikhail Exp $
+// ------------------------------------------------------------------------- //
+//                XOOPS - PHP Content Management System                      //
+//                       <http://xoops.underpop.com/>                             //
+// ------------------------------------------------------------------------- //
+//  This program is free software; you can redistribute it and/or modify     //
+//  it under the terms of the GNU General Public License as published by     //
+//  the Free Software Foundation; either version 2 of the License, or        //
+//  (at your option) any later version.                                      //
+//                                                                           //
+//  This program is distributed in the hope that it will be useful,          //
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
+//  GNU General Public License for more details.                             //
+//                                                                           //
+//  You should have received a copy of the GNU General Public License        //
+//  along with this program; if not, write to the Free Software              //
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
+// ------------------------------------------------------------------------- //
+include("admin_header.php");
+
+
+function xComicsList() {
+	OpenTable();
+	echo "<br>"._CO_OPT.":\n"
+		."<blockquote>"
+		."- <a href=?com=xComicsAdmin>"._AD_SET."</a><br>\n"
+		."- <a href=?com=xComicsAdd>"._AD_ADD."</a><br>\n"
+		."</blockquote>\n";
+	CloseTable();
+		
+}
+
+
+
+function xComicsAdmin() {
+	OpenTable();
+
+
+// Loading settings, but first set array!
+$xcomic_status = Array();
+require("../cache/settings.php");
+	
+echo _CO_KEU.":<BR>";
+echo "<form action=\"index.php\" method=\"post\" enctype=\"multipart/form-data\" />\n";
+
+
+
+
+
+if ($xcomic_status['dilbert'] == "On"){
+echo "Dilbert: (English)<BR>";
+echo "<input type=\"radio\" name=\"dilbertwrite\" value=\"On\" checked />On\n";
+echo "			<input type=\"radio\" name=\"dilbertwrite\" value=\"Off\" />Off<P>\n";
+echo "\n";
+}else{
+echo "Dilbert: (English)<BR>";
+echo "<input type=\"radio\" name=\"dilbertwrite\" value=\"On\"  />On\n";
+echo "			<input type=\"radio\" name=\"dilbertwrite\" value=\"Off\" checked />Off<P>\n";
+echo "\n";
+}
+
+
+if($xcomic_status['garfield'] == "On"){
+echo "Garfield: (English)<BR>";
+echo "<input type=\"radio\" name=\"garfieldwrite\" value=\"On\" checked />On\n";
+echo "			<input type=\"radio\" name=\"garfieldwrite\" value=\"Off\" />Off<P>\n";
+echo "\n";
+}else{
+echo "Garfield: (English)<BR>";
+echo "<input type=\"radio\" name=\"garfieldwrite\" value=\"On\"/>On\n";
+echo "			<input type=\"radio\" name=\"garfieldwrite\" value=\"Off\" checked />Off<P>\n";
+echo "\n";
+}
+
+
+if($xcomic_status['9to5'] == "On"){
+echo "9 to 5: (English)<BR>";
+echo "<input type=\"radio\" name=\"9to5write\" value=\"On\" checked />On\n";
+echo "			<input type=\"radio\" name=\"9to5write\" value=\"Off\" />Off<P>\n";
+echo "\n";
+}else{
+echo "9 to 5: (English)<BR>";
+echo "<input type=\"radio\" name=\"9to5write\" value=\"On\" />On\n";
+echo "			<input type=\"radio\" name=\"9to5write\" value=\"Off\" checked />Off<P>\n";
+echo "\n";
+}
+
+
+if($xcomic_status['close'] == "On"){
+echo "Close: (English)<BR>";
+echo "<input type=\"radio\" name=\"closewrite\" value=\"On\" checked />On\n";
+echo "			<input type=\"radio\" name=\"closewrite\" value=\"Off\" />Off<P>\n";
+echo "\n";
+}else{
+echo "Close: (English)<BR>";
+echo "<input type=\"radio\" name=\"closewrite\" value=\"On\"/>On\n";
+echo "			<input type=\"radio\" name=\"closewrite\" value=\"Off\" checked />Off<P>\n";
+echo "\n";
+}
+
+
+if($xcomic_status['baldo'] == "On"){
+echo "Baldo: (English)<BR>";
+echo "<input type=\"radio\" name=\"baldowrite\" value=\"On\" checked />On\n";
+echo "			<input type=\"radio\" name=\"baldowrite\" value=\"Off\" />Off\n";
+echo "\n";
+}else{
+echo "Baldo: (English)<BR>";
+echo "<input type=\"radio\" name=\"baldowrite\" value=\"On\" />On\n";
+echo "			<input type=\"radio\" name=\"baldowrite\" value=\"Off\" checked />Off\n";
+echo "\n";
+}
+if($xcomic_status['baldolang'] == "1"){
+echo "&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <select name=\"baldolangwrite\"><option value=\"1\" />English\n";
+echo "			<option value=\"2\" />Spanish</select><P>\n";
+echo "\n";
+}else{
+echo "&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <select name=\"baldolangwrite\"><option value=\"2\" />Spanish\n";
+echo "			<option value=\"1\" />English</select><P>\n";
+echo "\n";
+}
+
+
+if($xcomic_status['mopvddag'] == "On"){
+echo "Mop van de dag: (Dutch)<BR>";
+echo "<input type=\"radio\" name=\"mopvddagwrite\" value=\"On\" checked />On\n";
+echo "			<input type=\"radio\" name=\"mopvddagwrite\" value=\"Off\" />Off<P>\n";
+echo "\n";
+}else{
+echo "Mop van de dag: (Dutch)<BR>";
+echo "<input type=\"radio\" name=\"mopvddagwrite\" value=\"On\" />On\n";
+echo "			<input type=\"radio\" name=\"mopvddagwrite\" value=\"Off\" checked />Off<P>\n";
+echo "\n";
+}
+
+
+if($xcomic_status['kama'] == "On"){
+echo "Kamagurka:<BR>";
+echo "<input type=\"radio\" name=\"kamawrite\" value=\"On\" checked />On\n";
+echo "			<input type=\"radio\" name=\"kamawrite\" value=\"Off\" />Off\n";
+}else{
+echo "Kamagurka:<BR>";
+echo "<input type=\"radio\" name=\"kamawrite\" value=\"On\" />On\n";
+echo "			<input type=\"radio\" name=\"kamawrite\" value=\"Off\" checked />Off\n";
+}
+if($xcomic_status['kamalang'] == "1"){
+echo "&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <select name=\"kamalangwrite\"><option value=\"1\" />Dutch\n";
+echo "			<option value=\"2\" />English</select><P>\n";
+echo "\n";
+}else{
+echo "&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <select name=\"kamalangwrite\"><option value=\"2\" />English\n";
+echo "			<option value=\"1\" />Dutch</select><P>\n";
+echo "\n";
+}
+
+
+if($xcomic_status['ufriendly'] == "On"){
+echo "User Friendly: (English)<BR>";
+echo "<input type=\"radio\" name=\"ufriendlywrite\" value=\"On\" checked />On\n";
+echo "			<input type=\"radio\" name=\"ufriendlywrite\" value=\"Off\" />Off<P>\n";
+echo "\n";
+}else{
+echo "Userfriendly: (English)<BR>";
+echo "<input type=\"radio\" name=\"ufriendlywrite\" value=\"On\" />On\n";
+echo "			<input type=\"radio\" name=\"ufriendlywrite\" value=\"Off\" checked />Off<P>\n";
+echo "\n";
+}
+
+if($xcomic_status['humorgraf'] == "On"){
+echo "Humor grafico: (Spanish)<BR>";
+echo "<input type=\"radio\" name=\"humorgrafwrite\" value=\"On\" checked />On\n";
+echo "			<input type=\"radio\" name=\"humorgrafwrite\" value=\"Off\" />Off<P>\n";
+echo "\n";
+}else{
+echo "Humor grafico: (Spanish)<BR>";
+echo "<input type=\"radio\" name=\"humorgrafwrite\" value=\"On\" />On\n";
+echo "			<input type=\"radio\" name=\"humorgrafwrite\" value=\"Off\" checked />Off<P>\n";
+echo "\n";
+}
+
+if($xcomic_status['momma'] == "On"){
+echo "Momma: (English)<BR>";
+echo "<input type=\"radio\" name=\"mommawrite\" value=\"On\" checked />On\n";
+echo "			<input type=\"radio\" name=\"mommawrite\" value=\"Off\" />Off<P>\n";
+echo "\n";
+}else{
+echo "Momma: (English)<BR>";
+echo "<input type=\"radio\" name=\"mommawrite\" value=\"On\" />On\n";
+echo "			<input type=\"radio\" name=\"mommawrite\" value=\"Off\" checked />Off<P>\n";
+echo "\n";
+}
+
+if($xcomic_status['sinfest'] == "On"){
+echo "Sinfest: (English)<BR>";
+echo "<input type=\"radio\" name=\"sinfestwrite\" value=\"On\" checked />On\n";
+echo "			<input type=\"radio\" name=\"sinfestwrite\" value=\"Off\" />Off<P>\n";
+echo "\n";
+}else{
+echo "Sinfest: (English)<BR>";
+echo "<input type=\"radio\" name=\"sinfestwrite\" value=\"On\" />On\n";
+echo "			<input type=\"radio\" name=\"sinfestwrite\" value=\"Off\" checked />Off<P>\n";
+echo "\n";
+}
+
+if($xcomic_status['cblock'] == "On"){
+echo "Chopping Block: (English)<BR>";
+echo "<input type=\"radio\" name=\"cblockwrite\" value=\"On\" checked />On\n";
+echo "			<input type=\"radio\" name=\"cblockwrite\" value=\"Off\" />Off<P>\n";
+echo "\n";
+}else{
+echo "Chopping Block: (English)<BR>";
+echo "<input type=\"radio\" name=\"cblockwrite\" value=\"On\" />On\n";
+echo "			<input type=\"radio\" name=\"cblockwrite\" value=\"Off\" checked />Off<P>\n";
+echo "\n";
+}
+
+if($xcomic_status['calvinandhobbes'] == "On"){
+echo "Calvin and Hobbes: (English)<BR>";
+echo "<input type=\"radio\" name=\"calvinandhobbeswrite\" value=\"On\" checked />On\n";
+echo "			<input type=\"radio\" name=\"calvinandhobbeswrite\" value=\"Off\" />Off<P>\n";
+echo "\n";
+}else{
+echo "Calvin and Hobbes: (English)<BR>";
+echo "<input type=\"radio\" name=\"calvinandhobbeswrite\" value=\"On\" />On\n";
+echo "			<input type=\"radio\" name=\"calvinandhobbeswrite\" value=\"Off\" checked />Off<P>\n";
+echo "\n";
+}
+
+if($xcomic_status['adamathome'] == "On"){
+echo "Adam@Home: (English)<BR>";
+echo "<input type=\"radio\" name=\"adamathomewrite\" value=\"On\" checked />On\n";
+echo "			<input type=\"radio\" name=\"adamathomewrite\" value=\"Off\" />Off<P>\n";
+echo "\n";
+}else{
+echo "Adam@Home: (English)<BR>";
+echo "<input type=\"radio\" name=\"adamathomewrite\" value=\"On\" />On\n";
+echo "			<input type=\"radio\" name=\"adamathomewrite\" value=\"Off\" checked />Off<P>\n";
+echo "\n";
+}
+
+if ($xcomic_status['user']['status'] == "On"){
+echo $xcomic_status['user']['titel'].":<BR>";
+echo "<table><tr>";
+echo "<td>Name:<br><input type=\"text\" name=\"usertitelwrite\" value=\"".$xcomic_status['user']['titel']."\"></td><BR>";
+echo "<input type=\"radio\" name=\"userwrite\" value=\"On\" checked />On\n";
+echo "			<input type=\"radio\" name=\"userwrite\" value=\"Off\" />Off<br>\n";
+echo "<td>Copyright: <br><input type=\"text\" name=\"usercopwrite\" value=\"".$xcomic_status['user']['cop']."\"></td>";
+echo "</tr></table>\n";
+}else{
+echo "Own comic:<BR>";
+echo "<input type=\"radio\" name=\"userwrite\" value=\"On\" />On\n";
+echo "			<input type=\"radio\" name=\"userwrite\" value=\"Off\" checked />Off<br>\n";
+echo "<input type=\"hidden\" name=\"usercopwrite\" value=\"".$xcomic_status['user']['cop']."\">";
+echo "<input type=\"hidden\" name=\"usertitelwrite\" value=\"".$xcomic_status['user']['titel']."\">";
+echo "<p>\n";
+
+}
+
+echo "<textarea cols=\"80\" rows=\"5\" readonly> ";
+echo "PLEASE READ THESE TERMS OF USE CAREFULLY BEFORE USING THIS MODULE.
+==================================================================
+By using this module, you acknowledge your  agreement to be  bound
+by these terms of use. If you do not agree  to  be bound  by these
+terms of use, please do not use the module.
+
+Ownership and  Reproduction  of  Materials.  The contents  of  the
+comics  (the \"Materials\") may  be  subject to  copyright licences,
+and may therefore not be copied, reproduced, republished, uploaded,
+posted,  transmitted, or distributed, in whole or in part, for any
+purpose  other than individual viewing  on t he original web site,
+without  the  express prior written consent of the publisher. This
+means that use of any Materials on any other web site or networked
+computer environment may be prohibited.
+
+Use of any Materials on your website by utilising this module must
+be  preceded  by  aknowledging the copyright  licence to which the
+Materials are subject to.
+
+The author of this module and the parties distributing this module
+are in no way resprosible for illegal use of any Materials.";
+echo "</textarea><br>\n";
+echo "<input type=\"checkbox\" name=\"disclaimer\" value=\"akkoord\" checked />I agree<p>\n";
+echo "<input type=\"hidden\" name=\"com\" value=\"xComicsChange\" /><br \>";
+echo "<input type=\"submit\" value=\""._CO_SUB."\" />";
+echo "</form>";	
+
+	CloseTable();
+}
+
+
+
+function xComicsChange() {
+	error_reporting (E_ALL); 
+	
+	if(empty($_POST["disclaimer"]))
+	{
+		redirect_header("index.php?com=xComicsAdmin",2,_CO_YAGREE);
+		exit();
+	}
+	
+	$content  = "<"."?php \n";
+	$content .= "// Is the comic on or off? Default => all off\n";
+	$content .= "\$xcomic_status['dilbert'] = \"".$_POST["dilbertwrite"]."\";\n";
+	$content .= "\$xcomic_status['garfield'] = \"".$_POST["garfieldwrite"]."\";\n";
+	$content .= "\$xcomic_status['9to5'] = \"".$_POST["9to5write"]."\";\n";
+	$content .= "\$xcomic_status['close'] = \"".$_POST["closewrite"]."\";\n";
+	$content .= "\$xcomic_status['baldo'] = \"".$_POST["baldowrite"]."\";\n";
+	$content .= "\$xcomic_status['baldolang'] = \"".$_POST["baldolangwrite"]."\";	// 1 = english, 2 = espanol \n";
+	$content .= "\$xcomic_status['mopvddag'] = \"".$_POST["mopvddagwrite"]."\";\n";
+	$content .= "\$xcomic_status['kama'] = \"".$_POST["kamawrite"]."\";\n";
+	$content .= "\$xcomic_status['kamalang'] = \"".$_POST["kamalangwrite"]."\";	// 1 = dutch, 2 = English \n";
+	$content .= "\$xcomic_status['ufriendly'] = \"".$_POST["ufriendlywrite"]."\";\n";
+	$content .= "\$xcomic_status['humorgraf'] = \"".$_POST["humorgrafwrite"]."\";\n";
+	$content .= "\$xcomic_status['momma'] = \"".$_POST["mommawrite"]."\";\n";
+	$content .= "\$xcomic_status['sinfest'] = \"".$_POST["sinfestwrite"]."\";\n";
+	$content .= "\$xcomic_status['cblock'] = \"".$_POST["cblockwrite"]."\";\n";
+	$content .= "\$xcomic_status['calvinandhobbes'] = \"".$_POST["calvinandhobbeswrite"]."\";\n";
+	$content .= "\$xcomic_status['adamathome'] = \"".$_POST["adamathomewrite"]."\";\n";
+	$content .= "\$xcomic_status['user']['status'] = \"".$_POST["userwrite"]."\";\n";
+	$content .= "\$xcomic_status['user']['titel'] = \"".$_POST["usertitelwrite"]."\";\n";
+	$content .= "\$xcomic_status['user']['cop'] = \"".$_POST["usercopwrite"]."\";\n";
+	$content .= "?".">";
+
+	$checkfile = @fopen("../cache/settings.php","w"); 
+	if ($checkfile) 
+	{
+		$file = fopen("../cache/settings.php","w");
+		fputs($file, $content);
+		fclose($file);
+		redirect_header("index.php?com=xComicsAdmin",1,_CO_WRITTEN);
+		exit();		
+	}else{
+		redirect_header("index.php?com=xComicsAdmin",5,_CO_ERRWR);
+		exit();		
+	}
+}
+
+
+
+
+
+function xComicsAdd() {
+	error_reporting (E_ALL); 
+
+	if(!isset($_POST['verzenden']))
+	{
+	echo "<i>This function is somehow transported. In the early 1.3.x version it was written to a file, but since xoops has changed a lot since then I used another function for it, the templates!\n<br><br>\n"
+		."To edit the template file you will have to use the xoops system admin, to make it you easy to find the file, you can click on this link:</i>\n<br><br>\n"
+		."&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"".XOOPS_URL."/modules/system/admin.php?fct=tplsets&op=listtpl&tplset=x2t&moddir=xcomics\">The list of templates of the comic module</a> (If you use a template set called <b>x2t</b>)<br><br>\n"
+		."<i>Click on the Link, and edit the following template: xcomics_owncomic.html<br>\n"
+		."To edit the name of it and copyright notice click <a href=\"".XOOPS_URL."/modules/xcomics/admin/index.php?com=xComicsAdmin\">here</a></i>\n"
+		."<form action=\"index.php\" method=\"post\" />\n"
+		."<input type=\"text\" name=\"thetemplate\" value=\"The name of your default template set\" />\n<input type=\"submit\" name=\"verzenden\"value=\"Verzenden\" />\n"
+		."<input type=\"hidden\" name=\"com\" value=\"xComicsAdd\" />\n"
+		."<input type=\"hidden\" name=\"send\" value=\"yes\" />\n"
+		."</form>";
+	}else{
+	echo "<b>Data reveiced, processing...</b><br>"
+		."<b>Link =&gt; Created!</b><br><br>"
+		."&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"".XOOPS_URL."/modules/system/admin.php?fct=tplsets&op=listtpl&tplset=".$_POST["thetemplate"]."&moddir=xcomics\">The list of templates of the comic module</a> (Templateset name: <b>".$_POST["thetemplate"]."</b>)<br><br>\n"
+		."<i>Click on the Link, and edit the following template: xcomics_owncomic.html<br>\n"
+		."To edit the name of it and copyright notice click <a href=\"".XOOPS_URL."/modules/xcomics/admin/index.php?com=xComicsAdmin\">here</a></i>\n"
+		."<br>";
+	}
+}
+
+
+
+// reggies
+if (!isset($com))
+{
+	$com = $_GET['com'];
+	
+	if ($com == "")
+	{
+	$com = $_POST['com'];
+	}
+}
+// reggies done
+
+switch ($com){
+
+	case "xComicsChange":
+		xComicsChange();
+		break;
+		
+	case "xComicsAdd":
+		xoops_cp_header();
+		xComicsAdd();
+		echo "<br />";
+		break;
+				
+	case "xComicsAdmin":
+		xoops_cp_header();
+		xComicsAdmin();
+		echo "<br />";
+		break;
+		
+		
+	Default:
+		xoops_cp_header();
+		xComicsList();
+		echo "<br />";
+		break;
+
+}
+
+
+OpenTable();
+echo "Debug:<br>";
+echo "_SERVER[\"HTTP_ACCEPT\"] => <font color=blue>".$_SERVER["HTTP_ACCEPT"]."</font><br>";
+echo "_SERVER[\"HTTP_USER_AGENT\"] => <font color=blue>".$_SERVER["HTTP_USER_AGENT"]."</font><br>";
+echo "_SERVER[\"REQUEST_METHOD\"] => <font color=blue>".$_SERVER["REQUEST_METHOD"]."</font><br>";
+echo "_SERVER[\"SCRIPT_NAME\"] => <font color=blue>".$_SERVER["SCRIPT_NAME"]."</font><br>";
+echo "_SERVER[\"QUERY_STRING\"] => <font color=blue>".$_SERVER["QUERY_STRING"]."</font><br>";
+echo "_SERVER[\"PHP_SELF\"] => <font color=blue>".$_SERVER["PHP_SELF"]."</font><br>";
+CloseTable();
+
+
+
+include("admin_footer.php");
+?>

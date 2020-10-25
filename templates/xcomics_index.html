@@ -1,0 +1,16 @@
+<!-- start module content -->
+<table width="100%" border="0">
+  <tr>
+    <td class="odd"><{$lang_choose}></td>
+  </tr>
+  <tr>
+    <td class="even">
+		<ul>
+<{foreach item=comic from=$lijst_comics}>
+			<li><a href="<{$xoops_url}>/modules/xcomics/showcomic.php?id=<{$comic.id}>"><{$comic.name}></a></li>
+<{/foreach}>
+		</ul>
+	</td>
+  </tr>
+</table>
+<!-- end module content -->

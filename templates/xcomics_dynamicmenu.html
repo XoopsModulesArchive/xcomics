@@ -1,0 +1,10 @@
+<!-- The menu -->
+|
+<{foreach item=comic from=$lijst_comics}>
+<{if $comic.id == $active_id}>
+<b><{$comic.name}></b>&nbsp;|
+<{else}>
+<a href="showcomic.php?id=<{$comic.id}>"><{$comic.name}></a>&nbsp;|
+<{/if}>
+<{/foreach}>
+<!-- end The menu -->
